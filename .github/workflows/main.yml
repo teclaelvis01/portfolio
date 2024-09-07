@@ -1,4 +1,4 @@
-name: Deploy with fb
+name: Probando cosas
 on:
   push:
     branches: [ "main" ]
@@ -12,4 +12,13 @@ jobs:
         run: ls -la
       - name: Haciendo el paso 3
         run: pwd
-  
+  # deploy:
+  #   runs-on: ubuntu-22-04
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Deploy with Firebase
+  #       uses: w9jds/firebase-action@master
+  #       with:
+  #         args: deploy --only hosting
+  #       env:
+  #         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
