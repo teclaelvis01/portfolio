@@ -9,6 +9,8 @@ jobs:
   building:
     runs-on: ubuntu-22.04
     steps:
+      - name: Show my secret variable
+        run: echo ${{ secrets.ELVIS_SECRECT }}
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: yarn && yarn build
@@ -19,22 +21,25 @@ jobs:
           name: build-artifact
           path: ./dist
 
-  deploying:
-    runs-on: ubuntu-22.04
-    needs: building
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: build-artifact
+  # deploying:
+  #   runs-on: ubuntu-22.04
+  #   needs: building
+  #   steps:
+  #     - name: Download artifact
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: build-artifact
 
-      - name: Deploy to Firebase hosting
-        uses: doonstore/firebase-deploy@v1
-        with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          FIREBASE_PROJECT: ${{ secrets.FIREBASE_PROJECT }}
+  #     - name: Deploy to Firebase hosting
+  #       uses: doonstore/firebase-deploy@v1
+  #       with:
+  #         args: deploy --only hosting
+  #       env:
+  #         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+  #         FIREBASE_PROJECT: ${{ secrets.FIREBASE_PROJECT }}
+
+
+
         # with:
         #   args: deploy --only hosting
         # env:
