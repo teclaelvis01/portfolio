@@ -29,7 +29,7 @@ jobs:
           node-version: '20.0.0'
       
       -  name: Install Firebase CLI
-         run: yarn global add firebase-tools && firebase --version
+         run: yarn global add firebase-tools && firebase --version 
           
       - name: Download artifact
         uses: actions/download-artifact@v2
@@ -37,7 +37,7 @@ jobs:
           name: build-artifact
 
       - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }} --project ${{ secrets.FIREBASE_PROJECT_ID }}  
+        run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }} --project ${{ secrets.FIREBASE_PROJECT }}  
 
 
 
