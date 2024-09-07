@@ -9,8 +9,6 @@ jobs:
   building:
     runs-on: ubuntu-22.04
     steps:
-      - name: Show my secret variable
-        run: echo ${{ secrets.ELVIS_SECRECT }}
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: yarn && yarn build
