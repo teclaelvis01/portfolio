@@ -28,9 +28,13 @@ jobs:
         with:
           name: build-artifact
 
-      - name: Show files
-        run: ls -la
-        # uses: w9jds/firebase-action@master
+      - name: Deploy to Firebase hosting
+        uses: doonstore/firebase-deploy@v1
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_PROJECT: ${{ secrets.FIREBASE_PROJECT }}
         # with:
         #   args: deploy --only hosting
         # env:
