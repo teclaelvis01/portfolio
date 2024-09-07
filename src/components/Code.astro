@@ -1,0 +1,131 @@
+
+<div class="code-window w-full">
+    <div class="window-controls">
+        <div class="circle"></div>
+        <div class="circle yellow"></div>
+        <div class="circle green"></div>
+    </div>
+    <div class="py-5 flex flex-col">
+        <div id="code" class="code-text flex flex-col items-start">
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    let $ = document.querySelector.bind(document);
+    const codeElement = $('#code');
+    const text = `Systems Engineer with 11+ years of \nexperience in IT solutions and security. \nCurrently a fullstack developer using \nDjango, Symfony, Vue, Angular, Laravel, \nPython, PHP, Swift, Git, MariaDB \nand MongoDB.`;
+    
+    class Line {
+        spanOpen = '<span class="ml-2 flex-grow">';
+        spanClose = '</span>';
+        breakLine = '<br>';
+        text = '';
+        index = 0;
+        _cursor = '';
+        cursor = `<div class="blinking-cursor w-[2px] h-[20px] inline-block bg-[#61dafb]"></div>`;
+        constructor(targetElement) {
+            this.targetElement = targetElement;
+        }
+        write(word, activeCursorToEnd = false) {
+            return new Promise((resolve) => {
+            const writeChar = () => {
+                if (this.index === 0) {
+                    this.startLine();
+                }
+                if (this.index < word.length) {
+                    if(activeCursorToEnd && this.index === word.length - 1) {
+                        this._cursor = this.cursor;
+                    }
+                    this.targetElement.innerHTML = this.targetElement.innerHTML.slice(0, -7) + word[this.index] + this._cursor + this.targetElement.innerHTML.slice(-7);
+                    this.index++;
+                    setTimeout(writeChar, 20);
+                } else if (this.index === word.length) {
+                    this.closeLine();
+                    resolve();
+                }
+            };
+            writeChar();
+        });
+        }
+        startLine() {
+            this.targetElement.innerHTML += this.spanOpen;
+        }
+        closeLine() {
+            this.targetElement.innerHTML += this.spanClose;
+        }
+    }
+
+    
+
+    async function typeText(words) {
+        let index = 0;
+        for (const word of words) {
+            const line = new Line(codeElement);
+            await line.write(word, index === words.length - 1);
+            index++;
+        }
+    }
+    window.onload = () => {
+        const words = text.split('\n');
+        typeText(words);
+    };
+</script>
+
+<style>
+
+
+    .code-window {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        position: relative;
+    }
+
+    .window-controls {
+        display: flex;
+        gap: 8px;
+        position: absolute;
+        top: 8px;
+        left: 12px;
+    }
+
+    .circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #ff5f56; /* Rojo por defecto */
+    }
+
+    .yellow {
+        background-color: #ffbd2e; /* Amarillo */
+    }
+
+    .green {
+        background-color: #27c93f; /* Verde */
+    }
+
+    .code-text {
+        font-size: 1.2rem;
+        color: #61dafb;
+        white-space: pre-wrap;
+        padding-left: 5px;
+        word-wrap: break-word;
+    }
+
+    .blinking-cursor {
+        width: 2px;
+        height: 20px;
+        background-color: #61dafb;
+        animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+</style>
+

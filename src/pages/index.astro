@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import Card from '@/components/Card.astro';
 import Header from '@/components/Header.astro';
 import Image from 'astro/components/Image.astro';
+import Code from '@/components/Code.astro';
 ---
 
 <Layout title="Portfolio | Elvis Reyes">
@@ -29,7 +30,7 @@ import Image from 'astro/components/Image.astro';
 						</div>
 					</div>
 					<div class="block w-full">
-						<div>
+						<!-- <div>
 							<Image
 							class="w-3/4 mx-auto transition-all"
 							width={60}
@@ -37,7 +38,8 @@ import Image from 'astro/components/Image.astro';
 							loading={"eager"}
 							
 							 src="/img/workspace-0.webp" alt="Developer" />
-						</div>
+						</div> -->
+						<Code />
 					</div>
 					
 				</div>
