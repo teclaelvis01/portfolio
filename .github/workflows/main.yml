@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies
         run: yarn && yarn build
       - name: show files
-        run: ls -la
+        run: ls -la dist
   # deploy:
   #   runs-on: ubuntu-22-04
   #   steps:
