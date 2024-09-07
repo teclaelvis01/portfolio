@@ -9,6 +9,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Show node version
         run: node --version
+      - name: Show yarn version
+        run: yarn --version
   # deploy:
   #   runs-on: ubuntu-22-04
   #   steps:
