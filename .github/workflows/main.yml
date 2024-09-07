@@ -1,4 +1,4 @@
-name: Probando cosas
+name: Deploy to Firebase Hosting
 on:
   push:
     branches: [ "main" ]
@@ -6,12 +6,9 @@ jobs:
   exploring:
     runs-on: ubuntu-22.04
     steps:
-      - name: Haciendo el paso 1
-        run: echo "Hello, world!"
-      - name: Haciendo el paso 2
+      - uses: actions/checkout@v2
+      - name: Lista el codigo
         run: ls -la
-      - name: Haciendo el paso 3
-        run: pwd
   # deploy:
   #   runs-on: ubuntu-22-04
   #   steps:
