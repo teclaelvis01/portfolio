@@ -1,0 +1,15 @@
+name: Deploy with fb
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  exploring:
+    runs-on: ubuntu-22-04
+    steps:
+      - name: Haciendo el paso 1
+        run: echo "Hello, world!"
+      - name: Haciendo el paso 2
+        run: ls -la
+      - name: Haciendo el paso 3
+        run: pwd
+  
