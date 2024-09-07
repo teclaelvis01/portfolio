@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
-      - name: Show node version
-        run: node --version
-      - name: Show yarn version
-        run: yarn --version
+      - name: Install dependencies
+        run: yarn && yarn build
+      - name: show files
+        run: ls -la
   # deploy:
   #   runs-on: ubuntu-22-04
   #   steps:
