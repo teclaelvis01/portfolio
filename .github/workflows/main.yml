@@ -2,6 +2,9 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches: [ "main" ]
+concurrency:
+  group: elvis-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   exploring:
     runs-on: ubuntu-22.04
