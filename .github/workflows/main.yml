@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
-      - name: Lista el codigo
-        run: ls -la
+      - name: Show node version
+        run: node --version
   # deploy:
   #   runs-on: ubuntu-22-04
   #   steps:
