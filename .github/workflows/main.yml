@@ -27,19 +27,17 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '20.0.0'
+      
+      -  name: Install Firebase CLI
+         run: yarn global add firebase-tools && firebase --version
           
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
           name: build-artifact
 
-      - name: Deploy to Firebase hosting
-        uses: doonstore/firebase-deploy@v1
-        with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          FIREBASE_PROJECT: ${{ secrets.FIREBASE_PROJECT }}
+      - name: Deploy to Firebase Hosting
+        run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }} --project ${{ secrets.FIREBASE_PROJECT_ID }}  
 
 
 
