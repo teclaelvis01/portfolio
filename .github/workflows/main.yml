@@ -4,7 +4,7 @@ on:
     branches: [ "main" ]
 jobs:
   exploring:
-    runs-on: ubuntu-22-04-4
+    runs-on: ubuntu-22.04
     steps:
       - name: Haciendo el paso 1
         run: echo "Hello, world!"
